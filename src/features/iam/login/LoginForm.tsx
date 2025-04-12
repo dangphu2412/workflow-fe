@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button"
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card"
 import {WavesIcon as WaveIcon} from "lucide-react"
 import {AnimatedBackground} from "@/features/iam/login/AnimatedBackground";
-
+import {signIn} from "next-auth/react";
 
 export function LoginForm() {
     return (
@@ -25,8 +25,7 @@ export function LoginForm() {
                             variant="outline"
                             className="w-full flex items-center justify-center gap-2 cursor-pointer"
                             onClick={() => {
-                                // This will be replaced with actual Google sign-in logic
-                                alert("Google sign-in clicked")
+                                signIn("google");
                             }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">

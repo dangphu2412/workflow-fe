@@ -1,13 +1,17 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { WavesIcon as WaveIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { usePathname } from "next/navigation"
+import {Button} from "@/components/ui/button"
+import {WavesIcon as WaveIcon} from "lucide-react"
+import {cn} from "@/lib/utils"
+import {usePathname} from "next/navigation"
+import {signOut, useSession} from "next-auth/react";
 
 export function Header() {
     const pathname = usePathname()
+    const { status } = useSession();
+    const isAuthenticated = status === 'authenticated';
+
 
     return (
         <header className="mx-auto w-full h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -44,7 +48,7 @@ export function Header() {
 
                 {/* Right Side Actions */}
                 <div className="flex items-center gap-2">
-                    <Link
+                    {!isAuthenticated && <Link
                         href="/login"
                         className={cn(
                             "text-sm font-medium transition-colors hover:text-primary",
@@ -52,16 +56,19 @@ export function Header() {
                         )}
                     >
                         Login
-                    </Link>
+                    </Link>}
                     <Link
                         href="/contact"
                         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
                     >
                         Contact
                     </Link>
-                    <Button asChild size="sm" className="ml-4">
+                    {!isAuthenticated && <Button asChild size="sm" className="ml-4">
                         <Link href="/signup">Sign Up</Link>
-                    </Button>
+                    </Button>}
+                    {isAuthenticated && <Button size="sm" className="ml-4 cursor-pointer" onClick={() => signOut({
+                        callbackUrl: '/',
+                    })}>Log out</Button>}
                 </div>
             </div>
         </header>
