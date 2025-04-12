@@ -1,7 +1,10 @@
+import {IntroductionHeader} from "@/features/shared/layout/IntroductionHeader";
+
 export default function Home() {
   return (
     <div>
-      <main>Content</main>
+        <IntroductionHeader />
+        <main>Content</main>
     </div>
   );
 }

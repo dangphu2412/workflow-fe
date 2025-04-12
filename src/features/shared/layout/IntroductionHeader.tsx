@@ -7,11 +7,10 @@ import {cn} from "@/lib/utils"
 import {usePathname} from "next/navigation"
 import {signOut, useSession} from "next-auth/react";
 
-export function Header() {
+export function IntroductionHeader() {
     const pathname = usePathname()
     const { status } = useSession();
     const isAuthenticated = status === 'authenticated';
-
 
     return (
         <header className="mx-auto w-full h-16 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

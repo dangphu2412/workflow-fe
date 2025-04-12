@@ -11,7 +11,7 @@ export function LoginForm() {
         <div className="flex min-h-screen flex-col bg-gray-50">
             <AnimatedBackground />
 
-            <main className="flex-1 flex items-center justify-center p-4">
+            <main className="flex-1 flex items-center justify-center p-4 -mt-[64px]">
                 <Card className="w-full max-w-md relative z-10">
                     <CardHeader className="text-center">
                         <div className="flex items-center justify-center gap-2 mb-2">
@@ -25,7 +25,9 @@ export function LoginForm() {
                             variant="outline"
                             className="w-full flex items-center justify-center gap-2 cursor-pointer"
                             onClick={() => {
-                                signIn("google");
+                                signIn("google", {
+                                    callbackUrl: "/workflow",
+                                });
                             }}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="h-5 w-5">
